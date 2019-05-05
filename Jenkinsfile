@@ -9,9 +9,9 @@ pipeline {
     stage("downstream") {
       steps {
         sh "echo downstream"
-      }
-      withCredentials([string(credentialsId: 'secretText', variable: 'varName')]) {
-          echo "${varName}"
+        withCredentials([string(credentialsId: 'secretText', variable: 'varName')]) {
+            echo "${varName}"
+        }
       }
     }
 
