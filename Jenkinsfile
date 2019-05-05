@@ -12,8 +12,7 @@ pipeline {
         withCredentials([string(credentialsId: 'secretText', variable: 'varName')]) {
             echo "${varName}"
         }
-        withCredentials([usernamePassword(credentialsId: 'gitlab-userpwd-pair', usernameVariable: 'username',
-            passwordVariable: 'password'])) {
+        withCredentials([usernamePassword(credentialsId: 'gitlab-userpwd-pair', usernameVariable: 'username', passwordVariable: 'password')]) {
             echo "${username}, ${password}"
         }
       }
