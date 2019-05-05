@@ -7,7 +7,7 @@ pipeline {
 
   environment {
     __GITHUB_ACCESS_KEY = credentials('my_github')
-    __GITLAB_USERPWD_PAIR = credentails('gitlab-userpwd-pair')
+    __GITLAB_USERPWD_PAIR = credentials('gitlab-userpwd-pair')
   }
   
   stages {
