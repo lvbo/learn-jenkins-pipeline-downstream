@@ -10,6 +10,11 @@ pipeline {
       steps {
         sh "echo downstream"
       }
+      steps {
+        withCredentials([string(credentialsId: 'secretText', variable: 'varName')]) {
+            echo "${varName}"
+        }
+      }
     }
 
     stage('deploy test') {
