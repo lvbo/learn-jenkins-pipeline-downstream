@@ -8,6 +8,7 @@ pipeline {
   environment {
     __GITHUB_ACCESS_KEY = credentials('my_github')
     __GITLAB_USERPWD_PAIR = credentials('gitlab-userpwd-pair')
+    nexusRawusernamePassword = credentials('nexusRaw')
   }
   
   stages {
@@ -21,6 +22,7 @@ pipeline {
             echo "${username}, ${password}"
         }
         echo "${__GITHUB_ACCESS_KEY}  ${__GITLAB_USERPWD_PAIR_USR}   ${__GITLAB_USERPWD_PAIR_PSW}"
+        sh "curl --user '${nexusRawusernamePassword}' --upload-file ./README.md http://192.168.1.55:8081/repository/raw-example/${BUILD_NUMBER}/README.md
       }
     }
 
