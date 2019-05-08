@@ -23,12 +23,13 @@ pipeline {
         }
         echo "${__GITHUB_ACCESS_KEY}  ${__GITLAB_USERPWD_PAIR_USR}   ${__GITLAB_USERPWD_PAIR_PSW}"
         sh "curl --user '${nexusRawusernamePassword}' --upload-file ./README.md http://192.168.1.55:8081/repository/raw-example/${BUILD_NUMBER}/README.md"
+
+        script {
+          def version = VersionNumber versionPrefix: "${JOB_NAME}-", versionNumberString: 'v1.1.1.${BUILDS_ALL_TIME}'
+          echo "${version}"
+        }
       }
 
-      script {
-        def version = VersionNumber versionPrefix: "${JOB_NAME}-", versionNumberString: 'v1.1.1.${BUILDS_ALL_TIME}'
-        echo "${version}"
-      }
     }
 
     stage('deploy test') {
